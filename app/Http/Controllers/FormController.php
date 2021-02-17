@@ -24,7 +24,9 @@ class FormController extends Controller
     public function index($slug = null)
     {
         // Redirect to form if some data not isset
-        if(!$slug || $slug === 'form') {
+        if(!$slug) {
+            return redirect()->route('form', ['slug' => 'form']);
+        } else if($slug === 'form') {
             Session::forget('data');
         } else if ($slug === 'form1') {
             if(!Session::has('data') || !Session::has('data.to') || !Session::has('data.from')) {
