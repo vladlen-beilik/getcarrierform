@@ -5,6 +5,7 @@
 /vendor
 /docker
 .env
+.idea
 .composer
 .env.backup
 package-lock.json

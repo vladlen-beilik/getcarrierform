@@ -10,7 +10,7 @@ class Zip
     /**
      * @return Collection
      */
-    public static function get()
+    public static function get(): Collection
     {
         return collect(json_decode(File::get(public_path('zip.json'))));
     }

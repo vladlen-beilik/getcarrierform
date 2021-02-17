@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{slug?}', 'FormController@index')->where('slug','.+');
+Route::get('{slug?}', 'FormController@index')->where('slug','.+')->name('form');
 Route::post('search-zip', 'FormController@searchZip');
 Route::post('search-make', 'FormController@searchMake');
 Route::post('search-model', 'FormController@searchModel');

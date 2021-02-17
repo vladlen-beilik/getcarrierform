@@ -10,7 +10,7 @@ class Model
     /**
      * @return Collection
      */
-    public static function get()
+    public static function get(): Collection
     {
         return collect(json_decode(File::get(public_path('model.json'))));
     }

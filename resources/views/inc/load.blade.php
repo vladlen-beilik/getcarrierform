@@ -3,7 +3,7 @@
         <div class="page-form__load-box">
             <div class="page-form__logo">
 {{--                <a class="" href="{{ url('') }}">--}}
-                    <div class="page-form__logo-img" style="background-image:url({{ url('icons/logo.png') }})"></div>
+                    <div class="page-form__logo-img" style="background-image:url({{ url('icon/logo.png') }})"></div>
 {{--                </a>--}}
             </div>
             <div class="page-form__load-list">

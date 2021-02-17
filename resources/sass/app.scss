@@ -118,7 +118,7 @@ input {
       transform: translate(-50%, -50%);
       width: 12px;
       height: 11px;
-      background-image: url('../icons/load-icon.svg');
+      background-image: url('../icon/load-icon.svg');
       background-size: cover;
     }
   }
@@ -314,7 +314,7 @@ input {
     &:after {
       position: absolute;
       content: "";
-      background-image: url('../icons/arrow.svg');
+      background-image: url('../icon/arrow.svg');
       width: 18px;
       height: 17px;
       background-repeat: no-repeat;
@@ -423,7 +423,7 @@ input {
     &:after {
       position: absolute;
       content: "";
-      background-image: url('../icons/end.svg');
+      background-image: url('../icon/end.svg');
       width: 22px;
       height: 17px;
       background-repeat: no-repeat;
@@ -443,7 +443,7 @@ input {
     height: 11px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../icons/burger.svg');
+    background-image: url('../icon/burger.svg');
     transition: all .3s;
     z-index: 10;
     cursor: pointer;
@@ -476,7 +476,7 @@ input {
 
 .page-form__load-elips.active {
   &:after {
-    background-image: url('../icons/compl-icon.svg');
+    background-image: url('../icon/compl-icon.svg');
     width: 11px;
     height: 9px;
   }
@@ -503,7 +503,7 @@ input {
   &:after {
     position: absolute;
     content: '';
-    background-image: url('../icons/plus.svg');
+    background-image: url('../icon/plus.svg');
     width: 10px;
     height: 10px;
     background-repeat: no-repeat;
@@ -556,7 +556,7 @@ input {
   background-repeat: no-repeat;
   background-size: cover;
 
-  background-image: url('../icons/ok.svg');
+  background-image: url('../icon/ok.svg');
   opacity: 0;
   transition: all .3s;
 }
@@ -620,7 +620,7 @@ input {
 }
 
 .page-form__load-burger.active {
-  background-image: url('../icons/burger-com.svg');
+  background-image: url('../icon/burger-com.svg');
   width: 17px;
   height: 17px;
 }
@@ -635,7 +635,7 @@ input {
 }
 
 .page-form__logo-img.mobile.active {
-  background-image: url('../icons/logo.png') !important;
+  background-image: url('../icon/logo.png') !important;
 }
 
 //.ui-widget.ui-widget-content {
@@ -698,18 +698,18 @@ input {
     }
 
     .prev {
-      background: transparent url('../icons/arrow-l.svg') center no-repeat;
+      background: transparent url('../icon/arrow-l.svg') center no-repeat;
 
       &:hover {
-        background: #ededed url('../icons/arrow-l.svg') center no-repeat !important;
+        background: #ededed url('../icon/arrow-l.svg') center no-repeat !important;
       }
     }
 
     .next {
-      background: transparent url('../icons/arrow-r.svg') center no-repeat;
+      background: transparent url('../icon/arrow-r.svg') center no-repeat;
 
       &:hover {
-        background: #ededed url('../icons/arrow-r.svg') center no-repeat !important;
+        background: #ededed url('../icon/arrow-r.svg') center no-repeat !important;
       }
     }
   }
@@ -757,7 +757,7 @@ input {
 //}
 
 //.ui-datepicker .ui-datepicker-next {
-//  background-image: url('../icons/arrow-r.svg');
+//  background-image: url('../icon/arrow-r.svg');
 //  width: 25px;
 //  height: 25px;
 //  background-repeat: no-repeat;
@@ -768,7 +768,7 @@ input {
 //}
 //
 //.ui-datepicker .ui-datepicker-prev {
-//  background-image: url('../icons/arrow-l.svg');
+//  background-image: url('../icon/arrow-l.svg');
 //  width: 25px;
 //  height: 25px;
 //  background-repeat: no-repeat;

@@ -8,6 +8,7 @@ use App\Zip;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -18,26 +19,48 @@ class FormController extends Controller
 {
     /**
      * @param null $slug
-     * @return Application|Factory|View|void
+     * @return Application|Factory|RedirectResponse|View|void
      */
     public function index($slug = null)
     {
-        // Default view
-        $view = 'form';
-
-        // Other view if slug
-        if($slug)
-            $view = $slug;
-
-        // Forget data in form
-        if($view === 'form')
-            Session::forget('data');
-
         // Redirect to form if some data not isset
-        $this->returnToForm($view);
-
-        // Last form
-        if($view === 'form5') {
+        if(!$slug || $slug === 'form') {
+            Session::forget('data');
+        } else if ($slug === 'form1') {
+            if(!Session::has('data') || !Session::has('data.to') || !Session::has('data.from')) {
+                return redirect()->route('form', ['slug' => 'form']);
+            }
+            Session::forget('data.vehicles');
+        } else if ($slug === 'form2') {
+            if(!Session::has('data') || !Session::has('data.to') || !Session::has('data.from')) {
+                return redirect()->route('form', ['slug' => 'form']);
+            } else if (!Session::has('data.vehicles')) {
+                return redirect()->route('form', ['slug' => 'form1']);
+            }
+            Session::forget('data.trailer_type');
+        } else if ($slug === 'form3') {
+            if(!Session::has('data') || !Session::has('data.to') || !Session::has('data.from')) {
+                return redirect()->route('form', ['slug' => 'form']);
+            } else if (!Session::has('data.vehicles')) {
+                return redirect()->route('form', ['slug' => 'form1']);
+            } else if (!Session::has('data.date')) {
+                return redirect()->route('form', ['slug' => 'form2']);
+            }
+            Session::forget('data.date');
+        } else if ($slug === 'form4') {
+            if(!Session::has('data') || !Session::has('data.to') || !Session::has('data.from')) {
+                return redirect()->route('form', ['slug' => 'form']);
+            } else if (!Session::has('data.vehicles')) {
+                return redirect()->route('form', ['slug' => 'form1']);
+            } else if (!Session::has('data.date')) {
+                return redirect()->route('form', ['slug' => 'form2']);
+            } else if (!Session::has('data.name') || !Session::has('data.email') || !Session::has('data.phone')) {
+                return redirect()->route('form', ['slug' => 'form3']);
+            }
+            Session::forget('data.name');
+            Session::forget('data.email');
+            Session::forget('data.phone');
+        } else if ($slug === 'form5') {
             /**
              * Send Email
              * ToDo query email
@@ -48,7 +71,7 @@ class FormController extends Controller
             Session::forget('data');
         }
 
-        return view()->exists($view) ? view($view) : abort(404);
+        return view()->exists($slug ?? 'form') ? view($slug ?? 'form') : abort(404);
     }
 
     /**
@@ -100,6 +123,10 @@ class FormController extends Controller
         })->unique('model_name')->sortBy('model_name')->values()->toArray());
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function request(Request $request): JsonResponse
     {
         $form = $request->get('form');
@@ -185,55 +212,6 @@ class FormController extends Controller
             Session::put('data.email', $data['email']);
             Session::put('data.phone', $data['phone']);
             return response()->json(['redirect' => 'form5']);
-        }
-    }
-
-    /**
-     * @param $view
-     * @return Application|Factory|View
-     */
-    public function returnToForm($view)
-    {
-        if ($view === 'form1') {
-            if (!Session::has('data.from') || !Session::has('data.to')) {
-                return view('form');
-            }
-        } else if ($view === 'form2') {
-            if (!Session::has('data.from') || !Session::has('data.to')) {
-                return view('form');
-            } else if (!Session::has('data.vehicles')) {
-                return view('form1');
-            }
-        } else if ($view === 'form3') {
-            if (!Session::has('data.from') || !Session::has('data.to')) {
-                return view('form');
-            } else if (!Session::has('data.vehicles')) {
-                return view('form1');
-            } else if (!Session::has('data.trailer_type')) {
-                return view('form2');
-            }
-        } else if ($view === 'form4') {
-            if (!Session::has('data.from') || !Session::has('data.to')) {
-                return view('form');
-            } else if (!Session::has('data.vehicles')) {
-                return view('form1');
-            } else if (!Session::has('data.trailer_type')) {
-                return view('form2');
-            } else if (!Session::has('data.date')) {
-                return view('form3');
-            }
-        } else if ($view === 'form5') {
-            if (!Session::has('data.from') || !Session::has('data.to')) {
-                return view('form');
-            } else if (!Session::has('data.vehicles')) {
-                return view('form1');
-            } else if (!Session::has('data.trailer_type')) {
-                return view('form2');
-            } else if (!Session::has('data.date')) {
-                return view('form3');
-            } else if (!Session::has('data.name') || !Session::has('data.email') || !Session::has('data.phone')) {
-                return view('form4');
-            }
         }
     }
 }
